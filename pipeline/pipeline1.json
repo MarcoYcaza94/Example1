@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Pipeline que copia",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -44,17 +44,28 @@
 				"inputs": [
 					{
 						"referenceName": "cars",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "planes.csv"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"outputTable": "Planes"
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
