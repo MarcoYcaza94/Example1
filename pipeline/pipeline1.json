@@ -143,6 +143,17 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"x": {
+				"type": "String"
+			},
+			"temp": {
+				"type": "Boolean"
+			},
+			"temp2": {
+				"type": "Boolean"
+			}
+		},
 		"annotations": []
 	}
 }
