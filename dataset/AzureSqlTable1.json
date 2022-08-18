@@ -5,6 +5,11 @@
 			"referenceName": "AzureSqlDatabaseConnection1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"outputTable": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
@@ -37,7 +42,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Cars"
+			"table": {
+				"value": "@dataset().outputTable",
+				"type": "Expression"
+			}
 		}
 	}
 }
