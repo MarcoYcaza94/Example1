@@ -133,7 +133,7 @@
 								"url": "https://prod-01.centralus.logic.azure.com:443/workflows/fd48cfcbf49246db8731d3872b40949a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TFT37WtP-FGa5WFvmbjPHR1-GnD567UwelvbKgD1Vgk",
 								"method": "POST",
 								"body": {
-									"value": "{\n    \"title\": \"Todo bien\",\n    \"message\": \"\",\n    \"color\": \"Green\",\n    \"dataFactoryName\": \"\",\n    \"pipelineName\": \"\",\n    \"pipelineRunId\": \"\",\n    \"time\": \"@{utcnow()}\"\n}",
+									"value": "{\n    \"title\": \"PIPELINE RUN FINISHED\",\n    \"message\": \"RUNNING SUCCESSFULLY\",\n    \"color\": \"Green\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().DataFactory}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n}",
 									"type": "Expression"
 								}
 							}
