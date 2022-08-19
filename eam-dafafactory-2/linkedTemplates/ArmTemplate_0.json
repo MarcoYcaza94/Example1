@@ -265,7 +265,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Sacar backup y copiar')]",
+			"name": "[concat(parameters('factoryName'), '/backup storage and insert on SQL')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
