@@ -47,7 +47,7 @@
 					},
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Export Each table to csv",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
