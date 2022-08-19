@@ -7,7 +7,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Recursion  Iterada",
+					"referenceName": "trigger iteration email",
 					"type": "PipelineReference"
 				}
 			}
