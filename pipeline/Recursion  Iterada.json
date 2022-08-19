@@ -87,8 +87,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "AzureSqlTable2",
-									"type": "DatasetReference"
+									"referenceName": "AzureSqlTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"outputTable": {
+											"value": "@item().TABLE_NAME",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
