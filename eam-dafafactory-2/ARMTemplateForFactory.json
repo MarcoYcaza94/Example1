@@ -416,7 +416,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Recursion  Iterada')]",
+			"name": "[concat(parameters('factoryName'), '/trigger iteration email')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -604,7 +604,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "Recursion  Iterada",
+							"referenceName": "trigger iteration email",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -633,7 +633,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Recursion  Iterada')]"
+				"[concat(variables('factoryId'), '/pipelines/trigger iteration email')]"
 			]
 		}
 	]
