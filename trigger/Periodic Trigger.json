@@ -1,0 +1,37 @@
+{
+	"name": "Periodic Trigger",
+	"properties": {
+		"description": "Vamos a ejecutar periodicamente",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Recursion  Iterada",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 1,
+				"startTime": "2022-08-19T07:47:00",
+				"endTime": "2022-08-20T00:47:00",
+				"timeZone": "E. Europe Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						15
+					],
+					"weekDays": [
+						"Friday"
+					]
+				}
+			}
+		}
+	}
+}
