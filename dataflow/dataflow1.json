@@ -172,8 +172,7 @@
 				"     validateSchema: false,",
 				"     rowUrlColumn:'concat(origin,date)',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
