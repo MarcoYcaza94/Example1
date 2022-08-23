@@ -20,16 +20,15 @@
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"vInfo": {
-								"sourceNameInfo": {
-									"value": "@pipeline().parameters.some_vendor_info",
-									"type": "Expression"
-								}
+								"sourceNameCPU": "@pipeline().parameters.some_vendor_info",
+								"sheetName": "vInfo"
 							},
 							"cpu": {
 								"sourceNameCPU": {
 									"value": "@pipeline().parameters.some_vendor_info",
 									"type": "Expression"
-								}
+								},
+								"sheetName": "vCPU"
 							}
 						}
 					},
