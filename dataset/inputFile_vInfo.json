@@ -6,17 +6,19 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"sourceName": {
+			"sourceNameInfo": {
 				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "vInfo",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "@dataset().sourceName",
+				"fileName": {
+					"value": "@dataset.sourceNameInfo",
+					"type": "Expression"
+				},
 				"container": "samples-workitems"
 			},
 			"firstRowAsHeader": true
