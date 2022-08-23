@@ -27,7 +27,7 @@
 			"type": "string",
 			"defaultValue": "https://eammyfunction1.azurewebsites.net"
 		},
-		"trigger1_properties_dummyExample_parameters_fileName": {
+		"trigger1_properties_Execute from storage event_parameters_some_vendor_info": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
@@ -77,8 +77,8 @@
 					"AzureFunction1LinkedService_properties_typeProperties_functionAppUrl": {
 						"value": "[parameters('AzureFunction1LinkedService_properties_typeProperties_functionAppUrl')]"
 					},
-					"trigger1_properties_dummyExample_parameters_fileName": {
-						"value": "[parameters('trigger1_properties_dummyExample_parameters_fileName')]"
+					"trigger1_properties_Execute from storage event_parameters_some_vendor_info": {
+						"value": "[parameters('trigger1_properties_Execute from storage event_parameters_some_vendor_info')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"

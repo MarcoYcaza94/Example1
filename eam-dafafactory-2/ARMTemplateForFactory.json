@@ -27,7 +27,7 @@
 			"type": "string",
 			"defaultValue": "https://eammyfunction1.azurewebsites.net"
 		},
-		"trigger1_properties_dummyExample_parameters_fileName": {
+		"trigger1_properties_Execute from storage event_parameters_some_vendor_info": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
@@ -207,97 +207,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/cars')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dummyExample')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "sourceFileName",
-								"value": "@pipeline().parameters.fileName"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": false,
-									"modifiedDatetimeStart": "2022-08-23T00:00:00.127Z",
-									"enablePartitionDiscovery": false
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "inputFile_vCPU",
-								"type": "DatasetReference",
-								"parameters": {
-									"sourceName": {
-										"value": "@pipeline().parameters.fileName",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "salidaCPUINFO",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"fileName": {
-						"type": "string"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/inputFile_vCPU')]",
-				"[concat(variables('factoryId'), '/datasets/salidaCPUINFO')]"
 			]
 		},
 		{
@@ -1228,11 +1137,11 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "dummyExample",
+							"referenceName": "Execute from storage event",
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"fileName": "[parameters('trigger1_properties_dummyExample_parameters_fileName')]"
+							"some_vendor_info": "[parameters('trigger1_properties_Execute from storage event_parameters_some_vendor_info')]"
 						}
 					}
 				],
@@ -1248,7 +1157,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/dummyExample')]"
+				"[concat(variables('factoryId'), '/pipelines/Execute from storage event')]"
 			]
 		},
 		{
@@ -1420,10 +1329,9 @@
 						"select1 derive(fileName = concat(origin,'_to_here')) ~> origin",
 						"origin sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     partitionFileNames:['helaa'],",
+						"     rowUrlColumn:'fileName',",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> sink1"
+						"     skipDuplicateMapOutputs: true) ~> sink1"
 					]
 				}
 			},
@@ -1431,6 +1339,65 @@
 				"[concat(variables('factoryId'), '/datasets/inputFile_vInfo')]",
 				"[concat(variables('factoryId'), '/datasets/inputFile_vCPU')]",
 				"[concat(variables('factoryId'), '/datasets/salidaCPUINFO')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Execute from storage event')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "dataflow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "1.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"vInfo": {},
+									"cpu": {
+										"sourceName": {
+											"value": "@pipeline().parameters.some_vendor_info",
+											"type": "Expression"
+										}
+									},
+									"sink1": {}
+								},
+								"linkedServiceParameters": {}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"some_vendor_info": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		}
 	]

@@ -20,7 +20,7 @@
 		"AzureFunction1LinkedService_properties_typeProperties_functionAppUrl": {
 			"value": "https://eammyfunction1.azurewebsites.net"
 		},
-		"trigger1_properties_dummyExample_parameters_fileName": {
+		"trigger1_properties_Execute from storage event_parameters_some_vendor_info": {
 			"value": "@triggerBody().fileName"
 		},
 		"trigger1_properties_typeProperties_scope": {
