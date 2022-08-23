@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "AEPD.xlsx",
+				"fileName": {
+					"value": "triggerBody().fileName",
+					"type": "Expression"
+				},
 				"container": "samples-workitems"
 			},
 			"firstRowAsHeader": true

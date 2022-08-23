@@ -17,10 +17,7 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow1",
-						"type": "DataFlowReference",
-						"parameters": {
-							"fileName": "fileName"
-						}
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
@@ -30,6 +27,11 @@
 				}
 			}
 		],
+		"variables": {
+			"vendorSource": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
