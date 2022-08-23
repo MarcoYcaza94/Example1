@@ -5,6 +5,11 @@
 			"referenceName": "connectionToStorage",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sourceName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
