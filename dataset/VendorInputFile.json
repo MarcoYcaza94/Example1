@@ -1,5 +1,5 @@
 {
-	"name": "inputFile_vCPU",
+	"name": "VendorInputFile",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "connectionToStorage",
@@ -8,12 +8,18 @@
 		"parameters": {
 			"sourceNameCPU": {
 				"type": "string"
+			},
+			"sheetName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "vCPU",
+			"sheetName": {
+				"value": "@dataset().sheetName",
+				"type": "Expression"
+			},
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
