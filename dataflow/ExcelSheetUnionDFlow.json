@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "salidaCPUINFO",
+						"referenceName": "AppendedVendorInfoCSV",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
