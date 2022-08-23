@@ -13,6 +13,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "vCPU",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
