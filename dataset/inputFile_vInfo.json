@@ -1,5 +1,5 @@
 {
-	"name": "inputFile",
+	"name": "inputFile_vInfo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "connectionToStorage",
@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "vMemory",
+			"sheetName": "vInfo",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "AEPD.xlsx",
