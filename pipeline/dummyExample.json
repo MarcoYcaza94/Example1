@@ -24,7 +24,8 @@
 						"type": "ExcelSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
+							"recursive": false,
+							"modifiedDatetimeStart": "2022-08-23T00:00:00.127Z",
 							"enablePartitionDiscovery": false
 						}
 					},
@@ -52,7 +53,13 @@
 				"inputs": [
 					{
 						"referenceName": "inputFile_vCPU",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceName": {
+								"value": "@pipeline().parameters.fileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
