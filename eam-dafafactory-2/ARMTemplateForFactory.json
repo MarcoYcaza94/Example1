@@ -508,7 +508,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"sourceName": {
+					"sourceNameCPU": {
 						"type": "string"
 					}
 				},
@@ -519,7 +519,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@dataset().sourceName",
+							"value": "@dataset().sourceNameCPU",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
@@ -650,6 +650,11 @@
 					"referenceName": "connectionToStorage",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"sourceNameInfo": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
@@ -657,7 +662,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@substring('@{triggerBody().fileName}',57, sub(length('@{triggerBody().fileName}'),57))",
+							"value": "@dataset().sourceNameInfo",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
@@ -1365,9 +1370,14 @@
 								"type": "DataFlowReference",
 								"parameters": {},
 								"datasetParameters": {
-									"vInfo": {},
+									"vInfo": {
+										"sourceNameInfo": {
+											"value": "@pipeline().parameters.some_vendor_info",
+											"type": "Expression"
+										}
+									},
 									"cpu": {
-										"sourceName": {
+										"sourceNameCPU": {
 											"value": "@pipeline().parameters.some_vendor_info",
 											"type": "Expression"
 										}
