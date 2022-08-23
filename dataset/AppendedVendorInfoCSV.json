@@ -1,5 +1,5 @@
 {
-	"name": "salidaCPUINFO",
+	"name": "AppendedVendorInfoCSV",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "connectionToStorage",
