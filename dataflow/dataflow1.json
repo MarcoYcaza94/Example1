@@ -36,7 +36,7 @@
 					"name": "select1"
 				},
 				{
-					"name": "startdate"
+					"name": "origin"
 				}
 			],
 			"scriptLines": [
@@ -162,8 +162,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(start_date = currentTimestamp()) ~> startdate",
-				"startdate sink(allowSchemaDrift: true,",
+				"select1 derive(fileName = concat(origin,'_to_here')) ~> origin",
+				"origin sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     rowUrlColumn:'',",
 				"     skipDuplicateMapInputs: true,",
