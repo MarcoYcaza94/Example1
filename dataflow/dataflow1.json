@@ -34,9 +34,6 @@
 				},
 				{
 					"name": "select1"
-				},
-				{
-					"name": "origin"
 				}
 			],
 			"scriptLines": [
@@ -165,10 +162,9 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(origin = $fileName) ~> origin",
-				"origin sink(allowSchemaDrift: true,",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowUrlColumn:(@origin),",
+				"     rowUrlColumn:'origin',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
