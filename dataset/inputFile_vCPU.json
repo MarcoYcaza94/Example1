@@ -5,14 +5,18 @@
 			"referenceName": "connectionToStorage",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sourceName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "vCPU",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@substring('@{triggerBody().fileName}',57, sub(length('@{triggerBody().fileName}'),57))\n",
+					"value": "@dataset().sourceName",
 					"type": "Expression"
 				},
 				"container": "samples-workitems"

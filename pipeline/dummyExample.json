@@ -15,8 +15,8 @@
 				},
 				"userProperties": [
 					{
-						"name": "fileName",
-						"value": "@fileName"
+						"name": "sourceFileName",
+						"value": "@pipeline().parameters.fileName"
 					}
 				],
 				"typeProperties": {
