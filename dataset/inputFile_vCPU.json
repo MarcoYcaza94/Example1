@@ -16,6 +16,115 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "VM",
+				"type": "String"
+			},
+			{
+				"name": "Powerstate",
+				"type": "String"
+			},
+			{
+				"name": "Template",
+				"type": "String"
+			},
+			{
+				"name": "CPUs",
+				"type": "String"
+			},
+			{
+				"name": "Sockets",
+				"type": "String"
+			},
+			{
+				"name": "Cores p/s",
+				"type": "String"
+			},
+			{
+				"name": "Max",
+				"type": "String"
+			},
+			{
+				"name": "Overall",
+				"type": "String"
+			},
+			{
+				"name": "Level",
+				"type": "String"
+			},
+			{
+				"name": "Shares",
+				"type": "String"
+			},
+			{
+				"name": "Reservation",
+				"type": "String"
+			},
+			{
+				"name": "Entitlement",
+				"type": "String"
+			},
+			{
+				"name": "DRS Entitlement",
+				"type": "String"
+			},
+			{
+				"name": "Limit",
+				"type": "String"
+			},
+			{
+				"name": "Hot Add",
+				"type": "String"
+			},
+			{
+				"name": "Hot Remove",
+				"type": "String"
+			},
+			{
+				"name": "Annotation",
+				"type": "String"
+			},
+			{
+				"name": "Datacenter",
+				"type": "String"
+			},
+			{
+				"name": "Cluster",
+				"type": "String"
+			},
+			{
+				"name": "Host",
+				"type": "String"
+			},
+			{
+				"name": "Folder",
+				"type": "String"
+			},
+			{
+				"name": "OS according to the configuration file",
+				"type": "String"
+			},
+			{
+				"name": "OS according to the VMware Tools",
+				"type": "String"
+			},
+			{
+				"name": "VM ID",
+				"type": "String"
+			},
+			{
+				"name": "VM UUID",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK Server",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK UUID",
+				"type": "String"
+			}
+		]
 	}
 }

@@ -16,6 +16,287 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "VM",
+				"type": "String"
+			},
+			{
+				"name": "Powerstate",
+				"type": "String"
+			},
+			{
+				"name": "Template",
+				"type": "String"
+			},
+			{
+				"name": "Config status",
+				"type": "String"
+			},
+			{
+				"name": "DNS Name",
+				"type": "String"
+			},
+			{
+				"name": "Connection state",
+				"type": "String"
+			},
+			{
+				"name": "Guest state",
+				"type": "String"
+			},
+			{
+				"name": "Heartbeat",
+				"type": "String"
+			},
+			{
+				"name": "Consolidation Needed",
+				"type": "String"
+			},
+			{
+				"name": "PowerOn",
+				"type": "String"
+			},
+			{
+				"name": "Suspend time",
+				"type": "String"
+			},
+			{
+				"name": "Creation date",
+				"type": "String"
+			},
+			{
+				"name": "Change Version",
+				"type": "String"
+			},
+			{
+				"name": "CPUs",
+				"type": "String"
+			},
+			{
+				"name": "Memory",
+				"type": "String"
+			},
+			{
+				"name": "NICs",
+				"type": "String"
+			},
+			{
+				"name": "Disks",
+				"type": "String"
+			},
+			{
+				"name": "min Required EVC Mode Key ",
+				"type": "String"
+			},
+			{
+				"name": "Latency Sensitivity",
+				"type": "String"
+			},
+			{
+				"name": "EnableUUID",
+				"type": "String"
+			},
+			{
+				"name": "CBT",
+				"type": "String"
+			},
+			{
+				"name": "Primary IP Address",
+				"type": "String"
+			},
+			{
+				"name": "Network #1",
+				"type": "String"
+			},
+			{
+				"name": "Network #2",
+				"type": "String"
+			},
+			{
+				"name": "Network #3",
+				"type": "String"
+			},
+			{
+				"name": "Network #4",
+				"type": "String"
+			},
+			{
+				"name": "Num Monitors",
+				"type": "String"
+			},
+			{
+				"name": "Video Ram KB",
+				"type": "String"
+			},
+			{
+				"name": "Resource pool",
+				"type": "String"
+			},
+			{
+				"name": "Folder",
+				"type": "String"
+			},
+			{
+				"name": "vApp",
+				"type": "String"
+			},
+			{
+				"name": "DAS protection",
+				"type": "String"
+			},
+			{
+				"name": "FT State",
+				"type": "String"
+			},
+			{
+				"name": "FT Latency",
+				"type": "String"
+			},
+			{
+				"name": "FT Bandwidth",
+				"type": "String"
+			},
+			{
+				"name": "FT Sec. Latency",
+				"type": "String"
+			},
+			{
+				"name": "Provisioned MB",
+				"type": "String"
+			},
+			{
+				"name": "In Use MB",
+				"type": "String"
+			},
+			{
+				"name": "Unshared MB",
+				"type": "String"
+			},
+			{
+				"name": "HA Restart Priority",
+				"type": "String"
+			},
+			{
+				"name": "HA Isolation Response",
+				"type": "String"
+			},
+			{
+				"name": "HA VM Monitoring",
+				"type": "String"
+			},
+			{
+				"name": "Cluster rule(s)",
+				"type": "String"
+			},
+			{
+				"name": "Cluster rule name(s)",
+				"type": "String"
+			},
+			{
+				"name": "Boot Required",
+				"type": "String"
+			},
+			{
+				"name": "Boot delay",
+				"type": "String"
+			},
+			{
+				"name": "Boot retry delay",
+				"type": "String"
+			},
+			{
+				"name": "Boot retry enabled",
+				"type": "String"
+			},
+			{
+				"name": "Boot BIOS setup",
+				"type": "String"
+			},
+			{
+				"name": "Firmware",
+				"type": "String"
+			},
+			{
+				"name": "HW version",
+				"type": "String"
+			},
+			{
+				"name": "HW upgrade status",
+				"type": "String"
+			},
+			{
+				"name": "HW upgrade policy",
+				"type": "String"
+			},
+			{
+				"name": "HW target",
+				"type": "String"
+			},
+			{
+				"name": "Path",
+				"type": "String"
+			},
+			{
+				"name": "Log directory",
+				"type": "String"
+			},
+			{
+				"name": "Snapshot directory",
+				"type": "String"
+			},
+			{
+				"name": "Suspend directory",
+				"type": "String"
+			},
+			{
+				"name": "Annotation",
+				"type": "String"
+			},
+			{
+				"name": "Datacenter",
+				"type": "String"
+			},
+			{
+				"name": "Cluster",
+				"type": "String"
+			},
+			{
+				"name": "Host",
+				"type": "String"
+			},
+			{
+				"name": "OS according to the configuration file",
+				"type": "String"
+			},
+			{
+				"name": "OS according to the VMware Tools",
+				"type": "String"
+			},
+			{
+				"name": "VM ID",
+				"type": "String"
+			},
+			{
+				"name": "VM UUID",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK Server type",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK API Version",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK Server",
+				"type": "String"
+			},
+			{
+				"name": "VI SDK UUID",
+				"type": "String"
+			}
+		]
 	}
 }
