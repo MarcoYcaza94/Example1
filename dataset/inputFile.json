@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "vMemory",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "AEPD.xlsx",
