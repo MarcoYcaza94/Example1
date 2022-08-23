@@ -6,15 +6,6 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "dummyExample",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"fileName": "@triggerBody().fileName"
-				}
-			},
-			{
-				"pipelineReference": {
 					"referenceName": "Execute from storage event",
 					"type": "PipelineReference"
 				},
