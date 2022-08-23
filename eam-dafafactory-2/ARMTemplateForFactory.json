@@ -563,7 +563,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "substring(triggerBody().fileName,57, length(triggerBody().fileName) - 57 )\n",
+							"value": "@substring('@{triggerBody().fileName}',57, sub(length('@{triggerBody().fileName}'),57))\n",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
@@ -701,7 +701,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "substring(triggerBody().fileName,57, length(triggerBody().fileName) - 57 )\n",
+							"value": "@substring('@{triggerBody().fileName}',57, sub(length('@{triggerBody().fileName}'),57))",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
