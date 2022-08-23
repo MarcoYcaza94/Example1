@@ -1107,7 +1107,8 @@
 					],
 					"scriptLines": [
 						"parameters{",
-						"     fileName as string (fileName)",
+						"     fileName as string (fileName),",
+						"     parameter1 as string (origin)",
 						"}",
 						"source(output(",
 						"          VM as string,",
@@ -1233,7 +1234,7 @@
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     rowUrlColumn:'origin',",
+						"     rowUrlColumn:(concat($parameter1, \"asdsad\")),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> sink1"
 					]
