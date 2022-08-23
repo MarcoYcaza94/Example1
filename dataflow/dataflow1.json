@@ -36,7 +36,7 @@
 					"name": "select1"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "origin"
 				}
 			],
 			"scriptLines": [
@@ -160,14 +160,15 @@
 				"join1 select(mapColumn(",
 				"          VM = vInfo@VM,",
 				"          Powerstate = vInfo@Powerstate,",
-				"          CPUs = cpu@CPUs",
+				"          CPUs = cpu@CPUs,",
+				"          origin = fileName",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(origin = ERROR_FUNCTION('@fileName')) ~> derivedColumn1",
-				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"select1 derive(origin = $fileName) ~> origin",
+				"origin sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowUrlColumn:'',",
+				"     rowUrlColumn:(@origin),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
