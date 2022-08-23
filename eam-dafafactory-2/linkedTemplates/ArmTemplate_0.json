@@ -435,7 +435,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"container": "samples-workitems"
+						"fileName": "salida.csv",
+						"container": "output"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
