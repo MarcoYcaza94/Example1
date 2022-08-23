@@ -34,9 +34,15 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     fileName as string (fileName)",
+				"}",
 				"source(output(",
 				"          VM as string,",
 				"          Powerstate as string,",
@@ -111,7 +117,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> vInfo",
+				"     ignoreNoFilesFound: false,",
+				"     rowUrlColumn: 'fileName') ~> vInfo",
 				"source(output(",
 				"          VM as string,",
 				"          Powerstate as string,",
@@ -157,8 +164,10 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"select1 derive(origin = ERROR_FUNCTION('@fileName')) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     rowUrlColumn:'',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
