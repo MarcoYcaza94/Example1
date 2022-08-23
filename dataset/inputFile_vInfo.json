@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset.sourceNameInfo",
+					"value": "@dataset().sourceNameInfo",
 					"type": "Expression"
 				},
 				"container": "samples-workitems"
