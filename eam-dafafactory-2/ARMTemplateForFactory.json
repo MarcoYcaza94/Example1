@@ -47,7 +47,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "dataflow1",
+						"name": "ExcelSheetUnionDFlow",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
@@ -69,15 +69,11 @@
 										"sheetName": "vInfo"
 									},
 									"cpu": {
-										"sourceNameCPU": {
-											"value": "@pipeline().parameters.some_vendor_info",
-											"type": "Expression"
-										},
+										"sourceNameCPU": "@pipeline().parameters.some_vendor_info",
 										"sheetName": "vCPU"
 									},
 									"sink1": {}
-								},
-								"linkedServiceParameters": {}
+								}
 							},
 							"staging": {},
 							"compute": {
@@ -433,6 +429,32 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AppendedVendorInfoCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "connectionToStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/connectionToStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -756,33 +778,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AppendedVendorInfoCSV')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "connectionToStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "salida.csv",
-						"container": "output"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/connectionToStorage')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1039,7 +1034,7 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 derive(fileName = concat('volcado_desde_',origin)) ~> origin",
+						"select1 derive(fileName = concat(substring(origin,1,4),'_volcado.csv')) ~> origin",
 						"origin sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     rowUrlColumn:'fileName',",
