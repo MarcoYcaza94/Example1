@@ -170,9 +170,10 @@
 				") ~> date",
 				"date sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowUrlColumn:'origin',",
+				"     rowUrlColumn:'concat(origin,date)',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sink1"
 			]
 		}
 	}
