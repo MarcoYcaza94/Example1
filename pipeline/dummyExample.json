@@ -13,6 +13,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [
+					{
+						"name": "fileName",
+						"value": "@fileName"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "ExcelSource",
@@ -57,6 +63,11 @@
 				]
 			}
 		],
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
