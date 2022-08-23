@@ -19,8 +19,14 @@
 						"referenceName": "dataflow1",
 						"type": "DataFlowReference",
 						"datasetParameters": {
+							"vInfo": {
+								"sourceNameInfo": {
+									"value": "@pipeline().parameters.some_vendor_info",
+									"type": "Expression"
+								}
+							},
 							"cpu": {
-								"sourceName": {
+								"sourceNameCPU": {
 									"value": "@pipeline().parameters.some_vendor_info",
 									"type": "Expression"
 								}
