@@ -167,8 +167,7 @@
 				"     validateSchema: false,",
 				"     rowUrlColumn:'fileName',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
