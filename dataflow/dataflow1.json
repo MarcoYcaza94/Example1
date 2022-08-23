@@ -162,7 +162,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(date = currentTimestamp()) ~> startdate",
+				"select1 derive(start_date = currentTimestamp()) ~> startdate",
 				"startdate sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     rowUrlColumn:'',",
