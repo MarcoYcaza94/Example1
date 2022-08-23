@@ -41,6 +41,69 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Execute from storage event')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "dataflow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "1.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "ExcelSheetUnionDFlow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"vInfo": {
+										"sourceNameCPU": "@pipeline().parameters.some_vendor_info",
+										"sheetName": "vInfo"
+									},
+									"cpu": {
+										"sourceNameCPU": {
+											"value": "@pipeline().parameters.some_vendor_info",
+											"type": "Expression"
+										},
+										"sheetName": "vCPU"
+									},
+									"sink1": {}
+								},
+								"linkedServiceParameters": {}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"some_vendor_info": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/ExcelSheetUnionDFlow')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/backup storage and insert on SQL')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -444,62 +507,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/cars')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "connectionToStorage",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"fileName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().fileName",
-							"type": "Expression"
-						},
-						"container": "samples-workitems"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/connectionToStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/inputFile_vCPU')]",
+			"name": "[concat(parameters('factoryName'), '/VendorInputFile')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -510,12 +518,18 @@
 				"parameters": {
 					"sourceNameCPU": {
 						"type": "string"
+					},
+					"sheetName": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "vCPU",
+					"sheetName": {
+						"value": "@dataset().sheetName",
+						"type": "Expression"
+					},
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
@@ -642,7 +656,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/inputFile_vInfo')]",
+			"name": "[concat(parameters('factoryName'), '/cars')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -651,303 +665,43 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"sourceNameInfo": {
+					"fileName": {
 						"type": "string"
 					}
 				},
 				"annotations": [],
-				"type": "Excel",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"sheetName": "vInfo",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "@dataset().sourceNameInfo",
+							"value": "@dataset().fileName",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
 					},
-					"firstRowAsHeader": true
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
 				},
 				"schema": [
 					{
-						"name": "VM",
 						"type": "String"
 					},
 					{
-						"name": "Powerstate",
 						"type": "String"
 					},
 					{
-						"name": "Template",
 						"type": "String"
 					},
 					{
-						"name": "Config status",
 						"type": "String"
 					},
 					{
-						"name": "DNS Name",
 						"type": "String"
 					},
 					{
-						"name": "Connection state",
-						"type": "String"
-					},
-					{
-						"name": "Guest state",
-						"type": "String"
-					},
-					{
-						"name": "Heartbeat",
-						"type": "String"
-					},
-					{
-						"name": "Consolidation Needed",
-						"type": "String"
-					},
-					{
-						"name": "PowerOn",
-						"type": "String"
-					},
-					{
-						"name": "Suspend time",
-						"type": "String"
-					},
-					{
-						"name": "Creation date",
-						"type": "String"
-					},
-					{
-						"name": "Change Version",
-						"type": "String"
-					},
-					{
-						"name": "CPUs",
-						"type": "String"
-					},
-					{
-						"name": "Memory",
-						"type": "String"
-					},
-					{
-						"name": "NICs",
-						"type": "String"
-					},
-					{
-						"name": "Disks",
-						"type": "String"
-					},
-					{
-						"name": "min Required EVC Mode Key ",
-						"type": "String"
-					},
-					{
-						"name": "Latency Sensitivity",
-						"type": "String"
-					},
-					{
-						"name": "EnableUUID",
-						"type": "String"
-					},
-					{
-						"name": "CBT",
-						"type": "String"
-					},
-					{
-						"name": "Primary IP Address",
-						"type": "String"
-					},
-					{
-						"name": "Network #1",
-						"type": "String"
-					},
-					{
-						"name": "Network #2",
-						"type": "String"
-					},
-					{
-						"name": "Network #3",
-						"type": "String"
-					},
-					{
-						"name": "Network #4",
-						"type": "String"
-					},
-					{
-						"name": "Num Monitors",
-						"type": "String"
-					},
-					{
-						"name": "Video Ram KB",
-						"type": "String"
-					},
-					{
-						"name": "Resource pool",
-						"type": "String"
-					},
-					{
-						"name": "Folder",
-						"type": "String"
-					},
-					{
-						"name": "vApp",
-						"type": "String"
-					},
-					{
-						"name": "DAS protection",
-						"type": "String"
-					},
-					{
-						"name": "FT State",
-						"type": "String"
-					},
-					{
-						"name": "FT Latency",
-						"type": "String"
-					},
-					{
-						"name": "FT Bandwidth",
-						"type": "String"
-					},
-					{
-						"name": "FT Sec. Latency",
-						"type": "String"
-					},
-					{
-						"name": "Provisioned MB",
-						"type": "String"
-					},
-					{
-						"name": "In Use MB",
-						"type": "String"
-					},
-					{
-						"name": "Unshared MB",
-						"type": "String"
-					},
-					{
-						"name": "HA Restart Priority",
-						"type": "String"
-					},
-					{
-						"name": "HA Isolation Response",
-						"type": "String"
-					},
-					{
-						"name": "HA VM Monitoring",
-						"type": "String"
-					},
-					{
-						"name": "Cluster rule(s)",
-						"type": "String"
-					},
-					{
-						"name": "Cluster rule name(s)",
-						"type": "String"
-					},
-					{
-						"name": "Boot Required",
-						"type": "String"
-					},
-					{
-						"name": "Boot delay",
-						"type": "String"
-					},
-					{
-						"name": "Boot retry delay",
-						"type": "String"
-					},
-					{
-						"name": "Boot retry enabled",
-						"type": "String"
-					},
-					{
-						"name": "Boot BIOS setup",
-						"type": "String"
-					},
-					{
-						"name": "Firmware",
-						"type": "String"
-					},
-					{
-						"name": "HW version",
-						"type": "String"
-					},
-					{
-						"name": "HW upgrade status",
-						"type": "String"
-					},
-					{
-						"name": "HW upgrade policy",
-						"type": "String"
-					},
-					{
-						"name": "HW target",
-						"type": "String"
-					},
-					{
-						"name": "Path",
-						"type": "String"
-					},
-					{
-						"name": "Log directory",
-						"type": "String"
-					},
-					{
-						"name": "Snapshot directory",
-						"type": "String"
-					},
-					{
-						"name": "Suspend directory",
-						"type": "String"
-					},
-					{
-						"name": "Annotation",
-						"type": "String"
-					},
-					{
-						"name": "Datacenter",
-						"type": "String"
-					},
-					{
-						"name": "Cluster",
-						"type": "String"
-					},
-					{
-						"name": "Host",
-						"type": "String"
-					},
-					{
-						"name": "OS according to the configuration file",
-						"type": "String"
-					},
-					{
-						"name": "OS according to the VMware Tools",
-						"type": "String"
-					},
-					{
-						"name": "VM ID",
-						"type": "String"
-					},
-					{
-						"name": "VM UUID",
-						"type": "String"
-					},
-					{
-						"name": "VI SDK Server type",
-						"type": "String"
-					},
-					{
-						"name": "VI SDK API Version",
-						"type": "String"
-					},
-					{
-						"name": "VI SDK Server",
-						"type": "String"
-					},
-					{
-						"name": "VI SDK UUID",
 						"type": "String"
 					}
 				]
@@ -1002,7 +756,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/salidaCPUINFO')]",
+			"name": "[concat(parameters('factoryName'), '/AppendedVendorInfoCSV')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1015,10 +769,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "salida",
-							"type": "Expression"
-						},
 						"container": "samples-workitems"
 					},
 					"columnDelimiter": ",",
@@ -1166,7 +916,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"name": "[concat(parameters('factoryName'), '/ExcelSheetUnionDFlow')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1175,14 +925,14 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "inputFile_vInfo",
+								"referenceName": "VendorInputFile",
 								"type": "DatasetReference"
 							},
 							"name": "vInfo"
 						},
 						{
 							"dataset": {
-								"referenceName": "inputFile_vCPU",
+								"referenceName": "VendorInputFile",
 								"type": "DatasetReference"
 							},
 							"name": "cpu"
@@ -1191,7 +941,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "salidaCPUINFO",
+								"referenceName": "AppendedVendorInfoCSV",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -1213,71 +963,28 @@
 						"          VM as string,",
 						"          Powerstate as string,",
 						"          Template as string,",
-						"          {Config status} as string,",
-						"          {DNS Name} as string,",
-						"          {Connection state} as string,",
-						"          {Guest state} as string,",
-						"          Heartbeat as string,",
-						"          {Consolidation Needed} as string,",
-						"          PowerOn as string,",
-						"          {Suspend time} as string,",
-						"          {Creation date} as string,",
-						"          {Change Version} as string,",
 						"          CPUs as string,",
-						"          Memory as string,",
-						"          NICs as string,",
-						"          Disks as string,",
-						"          {min Required EVC Mode Key } as string,",
-						"          {Latency Sensitivity} as string,",
-						"          EnableUUID as string,",
-						"          CBT as string,",
-						"          {Primary IP Address} as string,",
-						"          {Network #1} as string,",
-						"          {Network #2} as string,",
-						"          {Network #3} as string,",
-						"          {Network #4} as string,",
-						"          {Num Monitors} as string,",
-						"          {Video Ram KB} as string,",
-						"          {Resource pool} as string,",
-						"          Folder as string,",
-						"          vApp as string,",
-						"          {DAS protection} as string,",
-						"          {FT State} as string,",
-						"          {FT Latency} as string,",
-						"          {FT Bandwidth} as string,",
-						"          {FT Sec. Latency} as string,",
-						"          {Provisioned MB} as string,",
-						"          {In Use MB} as string,",
-						"          {Unshared MB} as string,",
-						"          {HA Restart Priority} as string,",
-						"          {HA Isolation Response} as string,",
-						"          {HA VM Monitoring} as string,",
-						"          {Cluster rule(s)} as string,",
-						"          {Cluster rule name(s)} as string,",
-						"          {Boot Required} as string,",
-						"          {Boot delay} as string,",
-						"          {Boot retry delay} as string,",
-						"          {Boot retry enabled} as string,",
-						"          {Boot BIOS setup} as string,",
-						"          Firmware as string,",
-						"          {HW version} as string,",
-						"          {HW upgrade status} as string,",
-						"          {HW upgrade policy} as string,",
-						"          {HW target} as string,",
-						"          Path as string,",
-						"          {Log directory} as string,",
-						"          {Snapshot directory} as string,",
-						"          {Suspend directory} as string,",
+						"          Sockets as string,",
+						"          {Cores p/s} as string,",
+						"          Max as string,",
+						"          Overall as string,",
+						"          Level as string,",
+						"          Shares as string,",
+						"          Reservation as string,",
+						"          Entitlement as string,",
+						"          {DRS Entitlement} as string,",
+						"          Limit as string,",
+						"          {Hot Add} as string,",
+						"          {Hot Remove} as string,",
 						"          Annotation as string,",
 						"          Datacenter as string,",
 						"          Cluster as string,",
 						"          Host as string,",
+						"          Folder as string,",
 						"          {OS according to the configuration file} as string,",
 						"          {OS according to the VMware Tools} as string,",
 						"          {VM ID} as string,",
 						"          {VM UUID} as string,",
-						"          {VI SDK Server type} as string,",
-						"          {VI SDK API Version} as string,",
 						"          {VI SDK Server} as string,",
 						"          {VI SDK UUID} as string",
 						"     ),",
@@ -1331,7 +1038,7 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 derive(fileName = concat(origin,'_to_here')) ~> origin",
+						"select1 derive(fileName = concat('volcado_desde_',origin)) ~> origin",
 						"origin sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     rowUrlColumn:'fileName',",
@@ -1341,73 +1048,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/inputFile_vInfo')]",
-				"[concat(variables('factoryId'), '/datasets/inputFile_vCPU')]",
-				"[concat(variables('factoryId'), '/datasets/salidaCPUINFO')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Execute from storage event')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "dataflow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "1.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"vInfo": {
-										"sourceNameInfo": {
-											"value": "@pipeline().parameters.some_vendor_info",
-											"type": "Expression"
-										}
-									},
-									"cpu": {
-										"sourceNameCPU": {
-											"value": "@pipeline().parameters.some_vendor_info",
-											"type": "Expression"
-										}
-									},
-									"sink1": {}
-								},
-								"linkedServiceParameters": {}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"some_vendor_info": {
-						"type": "string"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+				"[concat(variables('factoryId'), '/datasets/VendorInputFile')]",
+				"[concat(variables('factoryId'), '/datasets/AppendedVendorInfoCSV')]"
 			]
 		}
 	]
