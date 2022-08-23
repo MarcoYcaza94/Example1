@@ -1,0 +1,20 @@
+{
+	"name": "inputFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "connectionToStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AEPD.xlsx",
+				"container": "samples-workitems"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
