@@ -34,12 +34,15 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "date"
 				}
 			],
 			"scriptLines": [
 				"parameters{",
 				"     fileName as string (fileName),",
-				"     parameter1 as string (origin)",
+				"     parameter1 as string (date)",
 				"}",
 				"source(output(",
 				"          VM as string,",
@@ -163,9 +166,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"select1 derive(date = currentTimestamp()\r",
+				") ~> date",
+				"date sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowUrlColumn:'VM',",
+				"     rowUrlColumn:'origin',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
