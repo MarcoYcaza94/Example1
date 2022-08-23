@@ -1102,7 +1102,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "triggerBody().fileName",
+							"value": "salida",
 							"type": "Expression"
 						},
 						"container": "samples-workitems"
