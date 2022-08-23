@@ -227,9 +227,7 @@
 							"dataflow": {
 								"referenceName": "dataflow1",
 								"type": "DataFlowReference",
-								"parameters": {
-									"fileName": "fileName"
-								},
+								"parameters": {},
 								"datasetParameters": {
 									"vInfo": {},
 									"cpu": {},
@@ -248,6 +246,11 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"variables": {
+					"vendorSource": {
+						"type": "String"
+					}
 				},
 				"annotations": []
 			},
@@ -559,7 +562,10 @@
 					"sheetName": "vCPU",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "AEPD.xlsx",
+						"fileName": {
+							"value": "triggerBody().fileName",
+							"type": "Expression"
+						},
 						"container": "samples-workitems"
 					},
 					"firstRowAsHeader": true
@@ -694,7 +700,10 @@
 					"sheetName": "vInfo",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "AEPD.xlsx",
+						"fileName": {
+							"value": "triggerBody().fileName",
+							"type": "Expression"
+						},
 						"container": "samples-workitems"
 					},
 					"firstRowAsHeader": true
@@ -1045,6 +1054,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "triggerBody().fileName",
+							"type": "Expression"
+						},
 						"container": "samples-workitems"
 					},
 					"columnDelimiter": ",",
@@ -1227,13 +1240,12 @@
 						},
 						{
 							"name": "select1"
+						},
+						{
+							"name": "origin"
 						}
 					],
 					"scriptLines": [
-						"parameters{",
-						"     fileName as string (fileName),",
-						"     parameter1 as string (origin)",
-						"}",
 						"source(output(",
 						"          VM as string,",
 						"          Powerstate as string,",
@@ -1356,11 +1368,13 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 sink(allowSchemaDrift: true,",
+						"select1 derive(fileName = concat(origin,'_to_here')) ~> origin",
+						"origin sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     rowUrlColumn:(concat($parameter1, \"asdsad\")),",
+						"     partitionFileNames:['helaa'],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink1"
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sink1"
 					]
 				}
 			},
