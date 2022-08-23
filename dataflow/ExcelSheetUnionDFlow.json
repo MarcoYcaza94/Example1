@@ -119,7 +119,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(fileName = concat('volcado_desde_',origin)) ~> origin",
+				"select1 derive(fileName = concat(substring(origin,1,4),'_volcado.csv')) ~> origin",
 				"origin sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     rowUrlColumn:'fileName',",
