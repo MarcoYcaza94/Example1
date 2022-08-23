@@ -23,6 +23,9 @@
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
 		},
+		"trigger2_properties_typeProperties_scope": {
+			"value": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
+		},
 		"containerUri": {
 			"value": ""
 		},
