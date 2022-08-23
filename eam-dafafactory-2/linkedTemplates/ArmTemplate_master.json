@@ -27,11 +27,11 @@
 			"type": "string",
 			"defaultValue": "https://eammyfunction1.azurewebsites.net"
 		},
-		"trigger1_properties_typeProperties_scope": {
+		"trigger1_properties_dummyExample_parameters_fileName": {
 			"type": "string",
-			"defaultValue": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
+			"defaultValue": "@triggerBody().fileName"
 		},
-		"trigger2_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
 		},
@@ -77,8 +77,8 @@
 					"AzureFunction1LinkedService_properties_typeProperties_functionAppUrl": {
 						"value": "[parameters('AzureFunction1LinkedService_properties_typeProperties_functionAppUrl')]"
 					},
-					"trigger2_properties_typeProperties_scope": {
-						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
+					"trigger1_properties_dummyExample_parameters_fileName": {
+						"value": "[parameters('trigger1_properties_dummyExample_parameters_fileName')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"

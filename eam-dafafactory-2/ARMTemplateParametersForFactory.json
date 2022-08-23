@@ -20,10 +20,10 @@
 		"AzureFunction1LinkedService_properties_typeProperties_functionAppUrl": {
 			"value": "https://eammyfunction1.azurewebsites.net"
 		},
-		"trigger1_properties_typeProperties_scope": {
-			"value": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
+		"trigger1_properties_dummyExample_parameters_fileName": {
+			"value": "@triggerBody().fileName"
 		},
-		"trigger2_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/40e2b879-c3d4-4ec8-95ce-8347a9e9da15/resourceGroups/eam-selflearning-resourcegroup-2/providers/Microsoft.Storage/storageAccounts/eamstorageaccount2"
 		}
 	}
