@@ -1,0 +1,34 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "inputFile_vInfo",
+						"type": "DatasetReference"
+					},
+					"name": "vInfo"
+				},
+				{
+					"dataset": {
+						"referenceName": "inputFile_vCPU",
+						"type": "DatasetReference"
+					},
+					"name": "cpu"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> vInfo",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> cpu"
+			]
+		}
+	}
+}
