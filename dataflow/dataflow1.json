@@ -165,9 +165,10 @@
 				"select1 derive(fileName = concat(origin,'_to_here')) ~> origin",
 				"origin sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowFolderUrlColumn:'fileName',",
+				"     partitionFileNames:['helaa'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
