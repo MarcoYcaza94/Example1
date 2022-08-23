@@ -6,18 +6,17 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"sourceName": {
+			"sourceNameCPU": {
 				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "vCPU",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset().sourceName",
+					"value": "@dataset().sourceNameCPU",
 					"type": "Expression"
 				},
 				"container": "samples-workitems"
