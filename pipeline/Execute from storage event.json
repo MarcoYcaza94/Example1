@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflow1",
+				"name": "ExcelSheetUnionDFlow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -24,10 +24,7 @@
 								"sheetName": "vInfo"
 							},
 							"cpu": {
-								"sourceNameCPU": {
-									"value": "@pipeline().parameters.some_vendor_info",
-									"type": "Expression"
-								},
+								"sourceNameCPU": "@pipeline().parameters.some_vendor_info",
 								"sheetName": "vCPU"
 							}
 						}
